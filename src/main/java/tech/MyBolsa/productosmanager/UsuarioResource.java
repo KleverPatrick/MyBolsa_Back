@@ -32,18 +32,24 @@ public class UsuarioResource {
 
 
     @GetMapping("/usuario/{contraseña}")
-    public boolean findUsuario(@PathVariable("contraseña") String contraseña){
-        boolean verificado = false;
+    public ResponseEntity<Usuario> findUsuario(@PathVariable("contraseña") String contraseña){
+       
         List<Usuario> users = usuarioService.findAllUsuarios();
         //verificar el recorrido del for
+        Usuario  usuarioAux = null;
         for(Usuario user : users){
+            usuarioAux = null;
             if(user.getContraseña().equals(contraseña)){
-                verificado = true;
-            }     
-            break;
+                System.out.println(user.getContraseña());
+                usuarioAux = user;
+                return new ResponseEntity<Usuario>(usuarioAux, HttpStatus.ACCEPTED);
+                
+            }
+                 
         }
+        return new ResponseEntity<Usuario>(usuarioAux, HttpStatus.ACCEPTED);
+                
         
-        return verificado;
               
     }
 
