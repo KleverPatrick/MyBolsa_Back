@@ -31,9 +31,6 @@ public class ProductoResource {
     }
     @PostMapping("/add")
     public ResponseEntity<Producto> addProducto(@RequestBody Producto producto){  
-        //producto.setImageUrl("data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEASABIAAD…vJ4Fvglf4vjPBYS1juzq+ZXUIuwIB4LV58e71fN6h4hv/2Q=="); 
-        System.out.println("***********************"+
-            "/t"+producto.getImageUrl());
         Producto newProducto = productoService.addproducto(producto);
         
         return new ResponseEntity<>(newProducto, HttpStatus.CREATED);
